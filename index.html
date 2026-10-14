@@ -37,50 +37,45 @@ a{color:inherit;text-decoration:none}
 /* ===== App bar ===== */
 .appbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:600px;z-index:20;
   display:flex;align-items:center;gap:12px;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));
-  color:#fff;transition:background .3s,color .3s,box-shadow .3s}
-.appbar.solid{background:var(--surface-2);color:var(--on-surface);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  color:#fff;transition:background .2s,color .2s,box-shadow .2s}
+.appbar.solid{background:var(--surface-2);color:var(--on-surface);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .logo{width:40px;height:40px;border-radius:12px;background:var(--primary);color:var(--on-primary);
   display:grid;place-items:center;font-weight:900;font-size:13px}
 .appbar h1{flex:1;font-size:20px;font-weight:500}
-.icon-btn{position:relative;overflow:hidden;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.18);
-  color:inherit;font-size:20px;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(8px)}
+.icon-btn{position:relative;overflow:hidden;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);
+  color:inherit;font-size:20px;display:grid;place-items:center;cursor:pointer}
 .appbar.solid .icon-btn{background:transparent}
 
 /* ===== Hero ===== */
-.hero{position:relative;height:92svh;min-height:560px;overflow:hidden;border-radius:0 0 36px 36px;
-  background:linear-gradient(135deg,#0b57d0,#7b4dff)}
-.hero .bg{position:absolute;inset:-8% 0 0 0;will-change:transform}
-.hero img{width:100%;height:100%;object-fit:cover;animation:kenburns 20s ease-in-out infinite alternate}
-@keyframes kenburns{from{transform:scale(1.05) translateX(0)}to{transform:scale(1.22) translateX(-4%)}}
+.hero{position:relative;height:88svh;min-height:520px;overflow:hidden;border-radius:0 0 28px 28px;
+  background:#0b57d0}
+.hero .bg{position:absolute;inset:-5% 0 0 0;will-change:transform}
+.hero img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.15) translateX(-3%)}}
 .hero::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 25%,rgba(4,20,60,.35) 55%,rgba(4,15,45,.92) 100%)}
+  background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 30%,rgba(4,20,60,.3) 60%,rgba(4,15,45,.88) 100%)}
 .hero-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px 20px 28px;color:#fff}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .chip{height:32px;padding:0 14px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;
-  background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3)}
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25)}
 .chip.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff5252;animation:pulse 1.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,82,82,.7)}100%{box-shadow:0 0 0 10px rgba(255,82,82,0)}}
-.hero h2{font-size:clamp(36px,10vw,52px);line-height:1.05;font-weight:800;letter-spacing:-.5px}
-.hero h2 .w{display:inline-block;opacity:0;transform:translateY(30px);animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}
-.grad{background:linear-gradient(90deg,#8ab4ff,#d0b8ff,#8ae0ff,#8ab4ff);background-size:300% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;animation:up .7s .5s cubic-bezier(.2,.8,.2,1) forwards,shine 6s linear infinite}
-@keyframes up{to{opacity:1;transform:none}}
-@keyframes shine{to{background-position:300% 0}}
-.hero p{margin-top:10px;font-size:16px;opacity:0;animation:up .7s .8s forwards}
-.btns{display:flex;gap:10px;margin-top:20px;opacity:0;animation:up .7s 1s forwards}
-.btn{position:relative;overflow:hidden;height:52px;padding:0 22px;border-radius:26px;border:none;font:600 15px inherit;font-family:inherit;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex:1;transition:transform .15s}
-.btn:active{transform:scale(.97)}
+.hero h2{font-size:clamp(34px,9vw,48px);line-height:1.08;font-weight:800;letter-spacing:-.3px}
+.hero h2 .w{display:inline-block}
+.grad{background:linear-gradient(90deg,#8ab4ff,#c0b8ff,#8ae0ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin-top:10px;font-size:16px;opacity:.95}
+.btns{display:flex;gap:10px;margin-top:18px}
+.btn{position:relative;overflow:hidden;height:50px;padding:0 20px;border-radius:25px;border:none;font:600 15px inherit;font-family:inherit;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex:1;transition:transform .12s}
+.btn:active{transform:scale(.96)}
 .btn.filled{background:var(--primary-container);color:var(--on-primary-container)}
-.btn.glass{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3)}
-.scroll-hint{position:absolute;top:calc(90px + env(safe-area-inset-top));right:20px;z-index:2;color:#fff;font-size:12px;opacity:.8;
-  writing-mode:vertical-rl;letter-spacing:2px;animation:bob 2s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(8px)}}
+.btn.glass{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.25)}
 
 /* ===== Ticker ===== */
 .ticker{margin:20px 0 8px;overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.track{display:flex;gap:10px;width:max-content;animation:marquee 28s linear infinite}
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:10px;width:max-content;animation:marquee 30s linear infinite}
 .track span{white-space:nowrap;padding:10px 16px;border-radius:20px;background:var(--secondary-container);
   color:var(--on-secondary-container);font-weight:500;font-size:14px}
 @keyframes marquee{to{transform:translateX(-50%)}}
@@ -91,47 +86,49 @@ section{padding:12px 16px}
 
 /* ===== Stats ===== */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.stat{background:var(--surface-1);border-radius:24px;padding:18px 8px;text-align:center}
-.stat b{display:block;font-size:34px;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
+.stat{background:var(--surface-1);border-radius:20px;padding:16px 8px;text-align:center}
+.stat b{display:block;font-size:32px;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
 .stat span{font-size:13px;color:var(--on-surface-var)}
 
 /* ===== Goals ===== */
 .goals{display:flex;flex-direction:column;gap:10px}
-details.goal{position:relative;overflow:hidden;background:var(--surface-1);border-radius:24px;transition:background .3s,transform .5s,opacity .5s}
+details.goal{position:relative;overflow:hidden;background:var(--surface-1);border-radius:20px;transition:background .2s}
 details.goal[open]{background:var(--primary-container);color:var(--on-primary-container)}
 summary{list-style:none;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 .em{width:52px;height:52px;flex:none;border-radius:16px;background:var(--secondary-container);display:grid;place-items:center;font-size:26px;
-  transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
-details[open] .em{transform:rotate(-10deg) scale(1.1);background:var(--surface)}
+  transition:transform .3s ease-out}
+details[open] .em{transform:rotate(-8deg) scale(1.08);background:var(--surface)}
 .gt{flex:1}
 .gt b{display:block;font-size:16px;font-weight:600}
 .gt small{font-size:13px;color:var(--on-surface-var)}
 details[open] .gt small{color:inherit;opacity:.8}
-.chev{font-size:20px;color:var(--on-surface-var);transition:transform .3s}
+.chev{font-size:20px;color:var(--on-surface-var);transition:transform .2s}
 details[open] .chev{transform:rotate(180deg);color:inherit}
-.goal p{padding:0 16px 16px 82px;font-size:14px;animation:up .35s forwards;opacity:0;transform:translateY(-6px)}
+.goal p{padding:0 16px 16px 82px;font-size:14px;line-height:1.5}
+
+/* ===== Special badges ===== */
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;
+  background:var(--tertiary-container);color:var(--on-tertiary-container);margin-left:8px;vertical-align:middle}
 
 /* ===== Telegram ===== */
-.tg{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;border-radius:28px;padding:18px;
-  background:linear-gradient(135deg,#2aabee,#1c7ed6);color:#fff;box-shadow:0 10px 30px rgba(42,171,238,.35)}
-.tg .ava{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;flex:none;animation:float 3s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-5px) rotate(-6deg)}}
+.tg{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;border-radius:24px;padding:18px;
+  background:linear-gradient(135deg,#2aabee,#1c7ed6);color:#fff;box-shadow:0 8px 20px rgba(42,171,238,.3)}
+.tg .ava{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
 .tg .txt{flex:1}
 .tg b{display:block;font-size:17px}
-.tg span{font-size:14px;opacity:.9}
+.tg span{font-size:14px;opacity:.92}
 .tg .go{background:#fff;color:#1c7ed6;font-weight:700;font-size:14px;padding:10px 16px;border-radius:20px}
 
 /* ===== Final CTA ===== */
-.final{position:relative;overflow:hidden;border-radius:32px;padding:32px 20px;text-align:center;color:#fff;
-  background:linear-gradient(135deg,#0b57d0,#7b4dff,#0b57d0);background-size:200% 200%;animation:bgmove 8s ease infinite}
-@keyframes bgmove{50%{background-position:100% 100%}}
-.final .big{font-size:56px;animation:bob 2s ease-in-out infinite}
+.final{position:relative;overflow:hidden;border-radius:28px;padding:32px 20px;text-align:center;color:#fff;
+  background:linear-gradient(135deg,#0b57d0,#7b4dff)}
+.final .big{font-size:56px}
 .final h3{font-size:30px;font-weight:800;margin:6px 0}
-.final p{opacity:.92;margin-bottom:20px}
-.final .btn{width:100%;background:#fff;color:#0b57d0;font-size:17px;height:58px;border-radius:29px}
+.final p{opacity:.94;margin-bottom:20px;line-height:1.5}
+.final .btn{width:100%;background:#fff;color:#0b57d0;font-size:17px;height:56px;border-radius:28px}
 .final .btn.done{background:#c4f5d2;color:#0a5a2a}
-.final .btn2{margin-top:10px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.final .btn2{margin-top:10px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.3)}
 
 footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px 16px}
 
@@ -139,25 +136,23 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
 .fab{position:fixed;right:max(16px,calc(50% - 284px));bottom:calc(20px + env(safe-area-inset-bottom));z-index:20;overflow:hidden;
   height:60px;padding:0 20px;border-radius:18px;background:var(--primary);color:var(--on-primary);
   display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;
-  box-shadow:0 6px 14px rgba(0,0,0,.25);transition:padding .3s}
-.fab .label{max-width:200px;white-space:nowrap;overflow:hidden;transition:max-width .3s,opacity .3s}
+  box-shadow:0 6px 14px rgba(0,0,0,.22);transition:padding .25s}
+.fab .label{max-width:200px;white-space:nowrap;overflow:hidden;transition:max-width .25s,opacity .25s}
 .fab.small .label{max-width:0;opacity:0}
 .fab.small{padding:0 18px;gap:0}
 
 /* ===== Snackbar ===== */
 .snack{position:fixed;left:16px;right:16px;max-width:568px;margin:0 auto;bottom:96px;z-index:30;background:var(--inverse-surface);
-  color:var(--inverse-on);padding:14px 16px;border-radius:8px;font-size:14px;opacity:0;transform:translateY(20px);transition:.25s;pointer-events:none}
+  color:var(--inverse-on);padding:14px 16px;border-radius:8px;font-size:14px;opacity:0;transform:translateY(20px);transition:.2s;pointer-events:none}
 .snack.show{opacity:1;transform:none}
 
-/* ===== Reveal / ripple / confetti ===== */
-.reveal{opacity:0;transform:translateY(24px) scale(.98);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*60ms)}
-.reveal.on{opacity:1;transform:none}
-.rip{position:absolute;border-radius:50%;background:currentColor;opacity:.25;transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+/* ===== Ripple ===== */
+.rip{position:absolute;border-radius:50%;background:currentColor;opacity:.2;transform:scale(0);animation:rip .5s ease-out forwards;pointer-events:none}
 @keyframes rip{to{transform:scale(4);opacity:0}}
 .conf{position:fixed;top:-40px;z-index:50;font-size:26px;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero h2 .w,.hero p,.btns,.grad{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -173,15 +168,13 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
     <img src="https://i9.photo.2gis.com/photo-gallery/415df76d-7dab-4588-9aac-d394046a764b.jpg"
          alt="Школа №11" referrerpolicy="no-referrer" onerror="this.remove()">
   </div>
-  <div class="scroll-hint">ЛИСТАЙ ↓</div>
   <div class="hero-content">
     <div class="chips">
       <span class="chip live">Выборы идут</span>
       <span class="chip">🏫 Школа №11</span>
     </div>
     <h2>
-      <span class="w" style="animation-delay:.1s">Меньше</span>
-      <span class="w" style="animation-delay:.2s">слов —</span><br>
+      <span class="w">Меньше слов —</span><br>
       <span class="w grad">больше дела</span>
     </h2>
     <p>Школьная коммунистическая партия 💙</p>
@@ -194,40 +187,57 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
 
 <div class="ticker">
   <div class="track">
-    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🕊️ Мир</span><span>💡 Идеи</span>
-    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🕊️ Мир</span><span>💡 Идеи</span>
+    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🍕 Магазин</span><span>🕺 Дискотеки</span><span>🚀 Интернет</span>
+    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🍕 Магазин</span><span>🕺 Дискотеки</span><span>🚀 Интернет</span>
   </div>
 </div>
 
 <section>
   <div class="stats">
-    <div class="stat reveal" style="--i:0"><b data-to="12">0</b><span>целей</span></div>
-    <div class="stat reveal" style="--i:1"><b data-to="2">0</b><span>нед. до уборки</span></div>
-    <div class="stat reveal" style="--i:2"><b data-to="100" data-suf="%">0</b><span>за вас</span></div>
+    <div class="stat"><b data-to="15">0</b><span>целей</span></div>
+    <div class="stat"><b data-to="2">0</b><span>нед. до уборки</span></div>
+    <div class="stat"><b data-to="100" data-suf="%">0</b><span>за вас</span></div>
   </div>
 </section>
 
 <section id="goals">
-  <h2 class="title reveal">Наши цели 🎯</h2>
-  <p class="sub reveal">Нажми на цель, чтобы узнать больше</p>
+  <h2 class="title">Наши цели 🎯</h2>
+  <p class="sub">Нажми на цель, чтобы узнать больше</p>
   <div class="goals">
-    <details class="goal reveal" style="--i:0"><summary><div class="em">🛑</div><div class="gt"><b>Стоп буллингу</b><small>Безопасно каждому</small></div><span class="chev">⌄</span></summary><p>Каждый должен чувствовать себя в безопасности и не бояться быть собой.</p></details>
-    <details class="goal reveal" style="--i:1"><summary><div class="em">🤝</div><div class="gt"><b>Дружба и единство</b><small>Найди своих</small></div><span class="chev">⌄</span></summary><p>Атмосфера, где каждый найдёт друзей и станет частью коллектива.</p></details>
-    <details class="goal reveal" style="--i:2"><summary><div class="em">🫶</div><div class="gt"><b>Взаимопомощь</b><small>Решаем вместе</small></div><span class="chev">⌄</span></summary><p>Поддерживаем друг друга и вместе решаем проблемы.</p></details>
-    <details class="goal reveal" style="--i:3"><summary><div class="em">🧹</div><div class="gt"><b>Чистая школа</b><small>Уборка раз в 2 недели</small></div><span class="chev">⌄</span></summary><p>Организуем уборку каждые две недели, чтобы в школе было чище и уютнее.</p></details>
-    <details class="goal reveal" style="--i:4"><summary><div class="em">🕊️</div><div class="gt"><b>Мир и дружба</b><small>Уважение вместо ссор</small></div><span class="chev">⌄</span></summary><p>Никаких ссор и вражды: больше уважения, понимания и доброты.</p></details>
-    <details class="goal reveal" style="--i:5"><summary><div class="em">🚀</div><div class="gt"><b>Развитие</b><small>Каждый день лучше</small></div><span class="chev">⌄</span></summary><p>Предлагаем новые идеи и вместе делаем школу лучше.</p></details>
-    <details class="goal reveal" style="--i:6"><summary><div class="em">📢</div><div class="gt"><b>Голос учеников</b><small>Мы вас слышим</small></div><span class="chev">⌄</span></summary><p>Прислушиваемся к мнению школьников и передаём их предложения администрации.</p></details>
-    <details class="goal reveal" style="--i:7"><summary><div class="em">💡</div><div class="gt"><b>Новые идеи</b><small>Предложить может любой</small></div><span class="chev">⌄</span></summary><p>Каждый ученик сможет предложить, как сделать школу лучше.</p></details>
-    <details class="goal reveal" style="--i:8"><summary><div class="em">🏫</div><div class="gt"><b>Комфорт</b><small>Кабинеты и коридоры</small></div><span class="chev">⌄</span></summary><p>Обращаем внимание на проблемы в кабинетах и школьных помещениях.</p></details>
-    <details class="goal reveal" style="--i:9"><summary><div class="em">🎉</div><div class="gt"><b>Больше мероприятий</b><small>Конкурсы и тематические дни</small></div><span class="chev">⌄</span></summary><p>Предложим интересные конкурсы, тематические дни и совместные события.</p></details>
-    <details class="goal reveal" style="--i:10"><summary><div class="em">⚖️</div><div class="gt"><b>Мирное решение проблем</b><small>Диалог и справедливость</small></div><span class="chev">⌄</span></summary><p>Выступаем за диалог и справедливое отношение ко всем ученикам.</p></details>
-    <details class="goal reveal" style="--i:11"><summary><div class="em">✨</div><div class="gt"><b>Чистота — общее дело</b><small>Каждый день</small></div><span class="chev">⌄</span></summary><p>Поддерживаем порядок не только на уборках, но и каждый день.</p></details>
+    <details class="goal"><summary><div class="em">🛑</div><div class="gt"><b>Стоп буллингу</b><small>Безопасно каждому</small></div><span class="chev">⌄</span></summary><p>Каждый должен чувствовать себя в безопасности и не бояться быть собой. Никаких оскорблений и травли.</p></details>
+    
+    <details class="goal"><summary><div class="em">🤝</div><div class="gt"><b>Дружба и единство</b><small>Найди своих</small></div><span class="chev">⌄</span></summary><p>Атмосфера, где каждый найдёт друзей и станет частью коллектива. Больше совместных активностей.</p></details>
+    
+    <details class="goal"><summary><div class="em">🫶</div><div class="gt"><b>Взаимопомощь</b><small>Решаем вместе</small></div><span class="chev">⌄</span></summary><p>Поддерживаем друг друга в учёбе и жизни. Вместе решаем проблемы — так проще и быстрее.</p></details>
+    
+    <details class="goal"><summary><div class="em">🧹</div><div class="gt"><b>Чистая школа</b><small>Уборка раз в 2 недели</small></div><span class="chev">⌄</span></summary><p>Организуем генеральную уборку каждые две недели. Чисто не там, где убирают, а там, где не мусорят — но помочь школе тоже важно.</p></details>
+    
+    <details class="goal"><summary><div class="em">🕺</div><div class="gt"><b>Дискотеки каждую четверть<span class="badge">НОВОЕ</span></b><small>С вкусняшками и музыкой</small></div><span class="chev">⌄</span></summary><p>В конце каждой четверти устраиваем дискотеку с нормальной музыкой, напитками и снеками. Отмечаем конец четверти как надо! 🎧🍕</p></details>
+    
+    <details class="goal"><summary><div class="em">🍕</div><div class="gt"><b>Магазин по понедельникам<span class="badge">НОВОЕ</span></b><small>Вкусняшки за школьную валюту</small></div><span class="chev">⌄</span></summary><p>Каждый понедельник на каждой перемене будет работать магазин. Покупайте снеки, напитки и сладости за школьную валюту, которую можно заработать за активность, помощь и участие в жизни школы. 💰</p></details>
+    
+    <details class="goal"><summary><div class="em">🚀</div><div class="gt"><b>ШКП Ускоритель — бесплатно<span class="badge">НОВОЕ</span></b><small>Telegram, YouTube без проблем</small></div><span class="chev">⌄</span></summary><p>Все получат бесплатный доступ к ШКП Ускорителю навсегда — работает Telegram, YouTube и другие сервисы без тормозов. Просто подключаешься и всё летает. 📡</p></details>
+    
+    <details class="goal"><summary><div class="em">🕊️</div><div class="gt"><b>Мир и дружба</b><small>Уважение вместо ссор</small></div><span class="chev">⌄</span></summary><p>Никаких ссор и вражды между классами. Больше уважения, понимания и доброты друг к другу.</p></details>
+    
+    <details class="goal"><summary><div class="em">🚀</div><div class="gt"><b>Развитие школы</b><small>Каждый день лучше</small></div><span class="chev">⌄</span></summary><p>Предлагаем новые идеи и вместе делаем школу лучше. Не стоим на месте.</p></details>
+    
+    <details class="goal"><summary><div class="em">📢</div><div class="gt"><b>Голос учеников</b><small>Мы вас слышим</small></div><span class="chev">⌄</span></summary><p>Прислушиваемся к мнению школьников и передаём ваши предложения администрации. Ваше мнение важно.</p></details>
+    
+    <details class="goal"><summary><div class="em">💡</div><div class="gt"><b>Новые идеи</b><small>Предложить может любой</small></div><span class="chev">⌄</span></summary><p>Каждый ученик сможет предложить идею, как сделать школу лучше. Лучшие идеи воплотим в жизнь.</p></details>
+    
+    <details class="goal"><summary><div class="em">🏫</div><div class="gt"><b>Комфорт в школе</b><small>Кабинеты и коридоры</small></div><span class="chev">⌄</span></summary><p>Обращаем внимание на проблемы в кабинетах, туалетах и школьных помещениях. Сообщайте — будем решать.</p></details>
+    
+    <details class="goal"><summary><div class="em">🎉</div><div class="gt"><b>Больше мероприятий</b><small>Конкурсы и тематические дни</small></div><span class="chev">⌄</span></summary><p>Предложим интересные конкурсы, тематические дни и совместные события. Школа — это не только уроки.</p></details>
+    
+    <details class="goal"><summary><div class="em">⚖️</div><div class="gt"><b>Справедливость</b><small>Диалог вместо крика</small></div><span class="chev">⌄</span></summary><p>Выступаем за диалог и справедливое отношение ко всем ученикам. Проблемы решаются разговором, а не наказаниями.</p></details>
+    
+    <details class="goal"><summary><div class="em">✨</div><div class="gt"><b>Чистота — общее дело</b><small>Каждый день</small></div><span class="chev">⌄</span></summary><p>Поддерживаем порядок не только на уборках, но и каждый день. Следим за своими местами — так приятнее всем.</p></details>
   </div>
 </section>
 
 <section>
-  <a class="tg reveal ripple" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">
+  <a class="tg ripple" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">
     <div class="ava"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.3l-4.7-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg></div>
     <div class="txt"><b>Telegram-канал ШКП</b><span>t.me/ShKPSchool11</span></div>
     <span class="go">Открыть</span>
@@ -235,7 +245,7 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
 </section>
 
 <section id="vote">
-  <div class="final reveal">
+  <div class="final">
     <div class="big">🗳️</div>
     <h3>Голосуй за ШКП!</h3>
     <p>Мы не просто обещаем — мы действуем 💪<br>Школа №11 — наша общая школа.</p>
@@ -261,28 +271,27 @@ addEventListener('scroll',()=>{
   lastY=y;
 },{passive:true});
 
-/* Появление и счётчики */
+/* Счётчики */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
-  e.target.classList.add('on');
   const n=e.target.querySelector('[data-to]');
   if(n){const to=+n.dataset.to,suf=n.dataset.suf||'',t0=performance.now();
     (function tick(t){const p=Math.min((t-t0)/1200,1);n.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(tick)})(t0);}
   io.unobserve(e.target);
 }),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.stat').forEach(el=>io.observe(el));
 
 /* Одна открытая цель за раз */
 document.querySelectorAll('details.goal').forEach(d=>d.addEventListener('toggle',()=>{
   if(d.open)document.querySelectorAll('details.goal[open]').forEach(o=>o!==d&&(o.open=false));
 }));
 
-/* Ripple-эффект */
+/* Ripple */
 document.addEventListener('pointerdown',e=>{
   const el=e.target.closest('.ripple');if(!el)return;
   const r=el.getBoundingClientRect(),s=Math.max(r.width,r.height),sp=document.createElement('span');
   sp.className='rip';sp.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;
-  el.appendChild(sp);setTimeout(()=>sp.remove(),600);
+  el.appendChild(sp);setTimeout(()=>sp.remove(),500);
 });
 
 /* Snackbar */
@@ -292,13 +301,13 @@ function toast(t){snack.textContent=t;snack.classList.add('show');clearTimeout(t
 /* Конфетти */
 function confetti(){
   const em=['💙','🗳️','🎉','✨','💪','⭐'];
-  for(let i=0;i<45;i++){
+  for(let i=0;i<40;i++){
     const c=document.createElement('span');c.className='conf';
     c.textContent=em[i%em.length];
     c.style.left=Math.random()*100+'vw';
-    c.style.animationDuration=(2+Math.random()*2.5)+'s';
-    c.style.animationDelay=Math.random()*.5+'s';
-    document.body.appendChild(c);setTimeout(()=>c.remove(),5200);
+    c.style.animationDuration=(2+Math.random()*2)+'s';
+    c.style.animationDelay=Math.random()*.4+'s';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),4500);
   }
   navigator.vibrate&&navigator.vibrate([30,40,30]);
 }
