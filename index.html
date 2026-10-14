@@ -49,11 +49,11 @@ a{color:inherit;text-decoration:none}
 /* ===== Hero ===== */
 .hero{position:relative;height:88svh;min-height:520px;overflow:hidden;border-radius:0 0 28px 28px;
   background:#0b57d0}
-.hero .bg{position:absolute;inset:-5% 0 0 0;will-change:transform}
+.hero .bg{position:absolute;inset:-5% 0 0 0;will-change:transform;cursor:pointer}
 .hero img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.15) translateX(-3%)}}
 .hero::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 30%,rgba(4,20,60,.3) 60%,rgba(4,15,45,.88) 100%)}
+  background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 30%,rgba(4,20,60,.3) 60%,rgba(4,15,45,.88) 100%);pointer-events:none}
 .hero-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px 20px 28px;color:#fff}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .chip{height:32px;padding:0 14px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;
@@ -146,7 +146,23 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
   color:var(--inverse-on);padding:14px 16px;border-radius:8px;font-size:14px;opacity:0;transform:translateY(20px);transition:.2s;pointer-events:none}
 .snack.show{opacity:1;transform:none}
 
-/* ===== Ripple ===== */
+/* ===== Photo viewer ===== */
+.viewer{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.viewer.open{display:flex}
+.viewer-content{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.viewer img{max-width:90%;max-height:90%;object-fit:contain;user-select:none}
+.viewer-close{position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;border:none;font-size:24px;display:grid;place-items:center;cursor:pointer;z-index:2}
+.viewer-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;border:none;font-size:28px;display:grid;place-items:center;cursor:pointer;z-index:2}
+.viewer-nav:active{background:rgba(255,255,255,.2)}
+.viewer-nav.prev{left:16px}
+.viewer-nav.next{right:16px}
+.viewer-counter{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
+  padding:8px 16px;border-radius:20px;background:rgba(255,255,255,.12);color:#fff;font-size:14px;font-weight:500}
+
+/* ===== Ripple / confetti ===== */
 .rip{position:absolute;border-radius:50%;background:currentColor;opacity:.2;transform:scale(0);animation:rip .5s ease-out forwards;pointer-events:none}
 @keyframes rip{to{transform:scale(4);opacity:0}}
 .conf{position:fixed;top:-40px;z-index:50;font-size:26px;pointer-events:none;animation:fall linear forwards}
@@ -259,6 +275,17 @@ footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px
 <a class="fab ripple" id="fab" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">✈️<span class="label">Подписаться</span></a>
 <div class="snack" id="snack"></div>
 
+<!-- Photo Viewer -->
+<div class="viewer" id="viewer">
+  <div class="viewer-content">
+    <img id="viewerImg" src="" alt="Фото школы">
+    <button class="viewer-close" id="viewerClose">×</button>
+    <button class="viewer-nav prev" id="viewerPrev">‹</button>
+    <button class="viewer-nav next" id="viewerNext">›</button>
+    <div class="viewer-counter"><span id="viewerCurrent">1</span> / <span id="viewerTotal">4</span></div>
+  </div>
+</div>
+
 <script>
 const $=s=>document.querySelector(s);
 const bar=$('#bar'),bg=$('#bg'),fab=$('#fab');
@@ -326,6 +353,62 @@ if(localStorage.getItem('shkp-vote'))setDone();
 vb.onclick=()=>{confetti();localStorage.setItem('shkp-vote','1');setDone();toast('Спасибо! Теперь позови друзей 👇')};
 $('#shareBtn').onclick=share;
 $('#shareTop').onclick=share;
+
+/* Photo Viewer */
+const photos=[
+  'https://i9.photo.2gis.com/photo-gallery/415df76d-7dab-4588-9aac-d394046a764b.jpg',
+  'https://i5.photo.2gis.com/photo-gallery/1f75d647-7819-409c-ad8e-c99db5b40dfc.jpg',
+  'https://i1.photo.2gis.com/images/geo/0/30258560091329806_8df2.jpg',
+  'https://i4.photo.2gis.com/photo-gallery/8dd80a94-8a70-468e-812d-4448a6c9a6dc.jpg'
+];
+let currentPhoto=0;
+const viewer=$('#viewer'),viewerImg=$('#viewerImg'),viewerCurrent=$('#viewerCurrent'),viewerTotal=$('#viewerTotal');
+
+function openViewer(idx){
+  currentPhoto=idx;
+  viewerImg.src=photos[currentPhoto];
+  viewerCurrent.textContent=currentPhoto+1;
+  viewerTotal.textContent=photos.length;
+  viewer.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeViewer(){
+  viewer.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function nextPhoto(){
+  currentPhoto=(currentPhoto+1)%photos.length;
+  viewerImg.src=photos[currentPhoto];
+  viewerCurrent.textContent=currentPhoto+1;
+}
+
+function prevPhoto(){
+  currentPhoto=(currentPhoto-1+photos.length)%photos.length;
+  viewerImg.src=photos[currentPhoto];
+  viewerCurrent.textContent=currentPhoto+1;
+}
+
+bg.onclick=()=>openViewer(0);
+$('#viewerClose').onclick=closeViewer;
+$('#viewerNext').onclick=nextPhoto;
+$('#viewerPrev').onclick=prevPhoto;
+viewer.onclick=e=>{if(e.target===viewer)closeViewer()};
+
+document.addEventListener('keydown',e=>{
+  if(!viewer.classList.contains('open'))return;
+  if(e.key==='Escape')closeViewer();
+  if(e.key==='ArrowRight')nextPhoto();
+  if(e.key==='ArrowLeft')prevPhoto();
+});
+
+let touchStartX=0;
+viewerImg.addEventListener('touchstart',e=>touchStartX=e.touches[0].clientX,{passive:true});
+viewerImg.addEventListener('touchend',e=>{
+  const diff=touchStartX-e.changedTouches[0].clientX;
+  if(Math.abs(diff)>50){diff>0?nextPhoto():prevPhoto()}
+},{passive:true});
 </script>
 </body>
 </html>
